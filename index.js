@@ -49,32 +49,6 @@ app.post('/post', (req, res) => {
 })
 
 
-app.delete("/delete",(req,res)=>{
-    const {name} = req.body;
-    console.log(name);
-    fs.readFile("./data.json", (err, data) => {
-        const prevValue = JSON.parse(data);
-        console.log(prevValue);
-        updatedVal=prevValue.filter(function (ele){
-            return ele.name!=name;
-        })
-        console.log(updatedVal);
-
-        fs.writeFile("./data.json", JSON.stringify(updatedVal), (err) => {
-            if (err) {
-                console.log(err);
-                res.send(err)
-            }
-            else {
-                // console.log("File Written Succesfullly!!\n");
-                res.send("Ok Deleted")
-
-            }
-        })
-    })
-    
-})
-
 app.listen(port, () => {
     console.log(`Server Started at port ${port}`);
 })
